@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Messenger</title>
+    <link rel="stylesheet" href="styles.css">
     <link
       href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
       rel="stylesheet"
@@ -99,22 +100,22 @@
               </p>
             </div>
           </div>
+          <!----Chat container-->
           <div class="ml-4 mr-9 w-full flex flex-col justify-between pb-24">
-            <div>sabbir</div>
-            <div class="justify-center flex">
-              <input
-                class="bg-gray-200 rounded-md px-2 py-1 w-full mr-2 focus:outline-none"
-                type="text"
-                id="inputField"
-                name="inputField"
-              />
-              <button class="px-2 py-1 bg-purple-800 rounded-md text-white text-sm flex" type="submit">Send <span class="material-symbols-outlined">
-                send
-                </span></button>
-            </div>
+            <div>
+              <div class="chat-messages" id="chat-messages">
+              </div>
+              <div class="chat-input">
+                  <div>
+                    <input type="text" id="message-input" placeholder="Type a message...">
+                  </div>
+                  <button class="pt-6" onclick="sendMessage()">Send</button>
+              </div>
+          </div>
           </div>
         </div>
       </div>
     </section>
+    <script src="script.js"></script>
   </body>
 </html>
