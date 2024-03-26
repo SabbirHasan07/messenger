@@ -8,41 +8,36 @@ function sendMessage() {
         
         // Add a tick mark after 2 seconds delay
         setTimeout(function() {
-            var ticks = document.createElement('span');
-            ticks.classList.add('tick');
-            sentMessageElement.appendChild(ticks);
-            setTimeout(function() {
-                sentMessageElement.removeChild(ticks);
-            }, 500);
-        }, 500);
+            var receivedDoneSection = createDoneSection();
+            sentMessageElement.appendChild(receivedDoneSection);
+            setTimeout(function(){
+            sentMessageElement.removeChild(receivedDoneSection);
+            var deliveredSection = creteDeliveredSection ();
+            sentMessageElement.appendChild(deliveredSection);
+            setTimeout(function(){
+                sentMessageElement.removeChild(deliveredSection);
+            },1400);
+            },1100);
+        },400);
         
 
         // Add "Seen" after 4 seconds delay
         setTimeout(function() {
-            var seen = document.createElement('span');
-            seen.classList.add('seen');
-            seen.textContent = 'Seen';
-            sentMessageElement.appendChild(seen);
+            var readSection = createReadSection();
+             sentMessageElement.appendChild(readSection);
             setTimeout(function() {
-                sentMessageElement.removeChild(seen);
-            }, 2000);
-
-            // Display "Typing..." after 6 seconds delay
-            setTimeout(function() {
-                var typing = document.createElement('span');
-                typing.classList.add('typing');
-                typing.textContent = 'Typing...';
+                sentMessageElement.removeChild(readSection);
+                var typing = createTypingSection();
                 chatMessages.appendChild(typing);
-
-                // Simulate receiving a demo message after a delay
                 setTimeout(function() {
                     chatMessages.removeChild(typing); // Remove "Typing..."
                     var receivedMessageSection = createReceivedMessageSection();
                     chatMessages.appendChild(receivedMessageSection);
+                    chatMessages.insertBefore(receivedMessageSection,sentMessageElement);
                     // Scroll to bottom after adding the message
                     chatMessages.scrollTop = chatMessages.scrollHeight;
-                }, 500);
-            }, 1000);
+                }, 3000);
+            }, 1400);
         }, 3000);
         
         // Scroll to bottom after adding the message
@@ -52,26 +47,69 @@ function sendMessage() {
     }
 }
 
-function createMessageElement(message, type) {
-    var messageElement = document.createElement('div');
-    messageElement.classList.add('message', type);
-    messageElement.innerHTML=`
-    <div class="message-dis"><img class="img" src="https://i.ibb.co/fDDyFwW/rsz-1sabbir.jpg" alt="Demo Photo" class="profile-photo"> <p class="message-name">Sabbir Hasan</p></div>
-    <div class="message-content">
-            <span class="message-text">${message}</span>
-    </div>
-    `
-    //messageElement.textContent = message;
-    return messageElement;
-}
+
 
 function createReceivedMessageSection() {
     var receivedMessageSection = document.createElement('div');
     receivedMessageSection.classList.add('message', 'received');
     receivedMessageSection.innerHTML = `
-        <div class="message-dis"><img class="img" src="https://i.ibb.co/znCFVm5/cute-handsome-man-round-avatar-icon-symbol-vector-16831401-removebg-preview.png" alt="Demo Photo" class="profile-photo"> <p class="message-name">Assistant</p></div>
-        <div class="message-content">
+        <div class="message-dis"><img class="img" src="https://i.ibb.co/znCFVm5/cute-handsome-man-round-avatar-icon-symbol-vector-16831401-removebg-preview.png" alt="Demo Photo" class="profile-photo"/> <p class="message-name">Assistant</p></div>
+        <div>
             <span class="message-text">Welcome, Admin!. I am just a Chat Bot. Thank you. </span>
         </div>`;
     return receivedMessageSection;
 }
+function createMessageElement(message, type) {
+    var messageElement = document.createElement('div');
+    messageElement.classList.add('message', type);
+    messageElement.innerHTML=`
+    <div class="message-div">
+    <div>
+    <div class="message-dis"><p class="message-name">Sabbir Hasan</p><img class="img" src="https://i.ibb.co/fDDyFwW/rsz-1sabbir.jpg" alt="image"></div>
+    <div>
+    <div class="message-two"><span>${message}</span></div>
+    </div>
+    </div>
+    </div>
+    `
+    //messageElement.textContent = message;
+    return messageElement;
+}
+function createDoneSection() {
+    var  receivedDoneSection= document.createElement('div');
+    receivedDoneSection.classList.add('message', 'received');
+    receivedDoneSection.innerHTML = `
+        <div class="right-section">
+        <div class="done-icon"></div>
+        </div>`;
+    return receivedDoneSection;
+}
+function creteDeliveredSection (){
+    var deliveredSection = document.createElement('div');
+    deliveredSection.classList.add('message', 'received');
+    deliveredSection.innerHTML = `
+        <div class="right-section">
+        <div class="done-icon-delivered "></div>
+        </div>`;
+    return deliveredSection;
+}
+function createReadSection(){
+    var readSection = document.createElement('div');
+    readSection.classList.add('message', 'received');
+    readSection.innerHTML = `
+        <div class="right-section">
+        <div class="done-icon-read "></div>
+        </div>`;
+    return readSection;
+}
+function createTypingSection(){
+    var typing = document.createElement('div');
+    typing.classList.add('message','received');
+    typing.innerHTML = `
+    <div class="right-section">
+    <img class="dot-img" src="https://i.ibb.co/FmdfV88/Animation-1711446830168.gif"/>
+   </div> 
+    `
+    return typing;
+}
+
