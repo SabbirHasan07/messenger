@@ -42,7 +42,6 @@ function sendMessage() {
         
         // Scroll to bottom after adding the message
         chatMessages.scrollTop = chatMessages.scrollHeight;
-        
         messageInput.value = '';
     }
 }
@@ -65,7 +64,11 @@ function createMessageElement(message, type) {
     messageElement.innerHTML=`
     <div class="message-div">
     <div>
-    <div class="message-dis"><p class="message-name">Sabbir Hasan</p><img class="img" src="https://i.ibb.co/fDDyFwW/rsz-1sabbir.jpg" alt="image"></div>
+    //edit
+    <div class="message-box">
+    <p class="message-name">Sabbir Hasan</p>
+    <img class="img" src="https://i.ibb.co/fDDyFwW/rsz-1sabbir.jpg" alt="image">
+    </div>
     <div>
     <div class="message-two"><span>${message}</span></div>
     </div>
@@ -79,9 +82,9 @@ function createDoneSection() {
     var  receivedDoneSection= document.createElement('div');
     receivedDoneSection.classList.add('message', 'received');
     receivedDoneSection.innerHTML = `
-        <div class="right-section">
+    <div class="right-section">
         <div class="done-icon"></div>
-        </div>`;
+    </div>`;
     return receivedDoneSection;
 }
 function creteDeliveredSection (){
@@ -106,7 +109,7 @@ function createTypingSection(){
     var typing = document.createElement('div');
     typing.classList.add('message','received');
     typing.innerHTML = `
-    <div class="right-section">
+    <div>
     <img class="dot-img" src="https://i.ibb.co/FmdfV88/Animation-1711446830168.gif"/>
    </div> 
     `

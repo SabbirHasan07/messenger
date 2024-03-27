@@ -1,8 +1,8 @@
 
 .chat-messages {
-    height: 450px;
-    overflow-y: auto;
-    padding: 10px;
+  bottom: 20px;
+  overflow-y: auto;
+  padding: 10px;
 }
 
 
@@ -143,3 +143,16 @@
     padding-bottom: 8px;
     border-radius: 5px;
   }
+  .message-box{
+    display: flex;
+    text-align: right;
+    justify-content: end;
+  }
+  .sent-message {
+    float: right;
+    clear: both;
+}
+.received-message {
+  float: left;
+  clear: both;
+}
