@@ -1,11 +1,20 @@
 
 .chat-messages {
+  height: 500px;
   bottom: 20px;
   overflow-y: auto;
   padding: 10px;
+  display: flex;
+  flex-direction: column;
 }
 
+.chat-messages > :first-child {
+  margin-top: auto !important;
+}
 
+.chat-message-div{
+  height: 450px;
+}
 .chat-messages div {
     margin-bottom: 10px;
 }
@@ -47,25 +56,22 @@
 .message-div{
     display: flex;
     justify-content: end;
-    margin-top: 20px;
-    margin-bottom: 20px;
 }
 .img{
     width: 25px;
     border-radius: 100%;
 }
 .message-text{
-    margin-left: 4%;
     background-color: #f1f1f1;
-    padding: 1%;
+    padding: 6px;
+    margin-left: 30px;
     border-radius: 5px;
-    margin-top: 2%;
 
 }
  
   .done-icon {
-    width: 16px;
-    height: 16px;
+    width: 12px;
+    height: 12px;
     border: 2px solid #8d8d8d; /* Green color */
     border-radius: 50%; /* Rounded shape */
     position: relative;
@@ -84,8 +90,8 @@
     transform: translate(-50%, -50%) rotate(45deg); /* Rotates the element to form a checkmark */
   }
   .done-icon-delivered {
-    width: 16px;
-    height: 16px;
+    width: 12px;
+    height: 12px;
     background: #000;
     border: 2px solid #000000; /* Green color */
     border-radius: 50%; /* Rounded shape */
@@ -105,8 +111,8 @@
     transform: translate(-50%, -50%) rotate(45deg); /* Rotates the element to form a checkmark */
   }
   .done-icon-read {
-    width: 16px;
-    height: 16px;
+    width: 12px;
+    height: 12px;
     background: #176101;
     border: 2px solid #176101; /* Green color */
     border-radius: 50%; /* Rounded shape */
@@ -123,7 +129,7 @@
     border-width: 0 2px 2px 0;
     border-color: white;
     border-style: solid;
-    transform: translate(-50%, -50%) rotate(45deg); /* Rotates the element to form a checkmark */
+    transform: translate(-50%, -50%) rotate(45deg); 
   }
   .dot-img{
     width: 12%;
@@ -132,27 +138,63 @@
   .right-section{
     display: flex;
     justify-content: end;
+    position: relative;
   }
   .message-two{
     background-color:#f1f1f1;
     text-align: right;
-    margin-right: 26px;
-    padding-right: 10px;
-    padding-left: 10px;
-    padding-top: 8px;
-    padding-bottom: 8px;
+    margin-right: 38px;
+    padding-top: 6px;
+    padding-bottom: 6px;
+    padding-right: 12px;
     border-radius: 5px;
   }
-  .message-box{
+ .message-box{
+  display: flex;
+  gap: 6px;
+  margin: 7px;
+  justify-content: right;
+ }
+  .loadingContainer {
     display: flex;
-    text-align: right;
-    justify-content: end;
+    justify-content: left;
+    align-items: center;
+    height: 10vh;
+    font-size: 15px;
+    color: rgb(160, 160, 160);
   }
-  .sent-message {
-    float: right;
-    clear: both;
-}
-.received-message {
-  float: left;
-  clear: both;
-}
+
+  .text {
+    margin-right: 10px;
+  }
+
+  .dot-wave {
+    display: flex;
+    align-items: left;
+  }
+  
+  .dot {
+    width: 7px;
+    height: 7px;
+    background-color: rgb(160, 160, 160);
+    border-radius: 50%;
+    margin: 0 5px;
+    animation: wave 2s infinite ease-in-out;
+  }
+  
+  .dot:nth-child(2) {
+    animation-delay: -0.4s;
+  }
+  
+  .dot:nth-child(3) {
+    animation-delay: -0.8s;
+  }
+
+  @keyframes wave {
+    0%, 60%, 100% {
+      transform: translateY(0);
+    }
+    30% {
+      transform: translateY(-10px);
+    }
+  }
