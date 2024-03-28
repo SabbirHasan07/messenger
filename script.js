@@ -1,4 +1,7 @@
+var sentMessages = 0;
+
 function sendMessage() {
+  sentMessages = sentMessages + 1;
   var messageInput = document.getElementById("message-input");
   var message = messageInput.value.trim();
   if (message !== "") {
@@ -29,9 +32,12 @@ function sendMessage() {
         var typing = createTypingSection();
         chatMessages.appendChild(typing);
         setTimeout(function () {
+          var i = 0;
           chatMessages.removeChild(typing);
           var receivedMessageSection = createReceivedMessageSection();
           chatMessages.appendChild(receivedMessageSection);
+          // var value = document.getElementById("received-message");
+          typeWriterDriver();
           chatMessages.insertBefore(receivedMessageSection, sentMessageElement);
           chatMessages.scrollTop = chatMessages.scrollHeight;
         }, 3000);
@@ -44,14 +50,31 @@ function sendMessage() {
   }
 }
 
+function typeWriterDriver() {
+  var i = 0;
+  var txt = "Welcome, Admin!. I am just a Chat Bot. Thank you.";
+  var speed = 50;
+  function typeWriter() {
+    if (i < txt.length) {
+      document.getElementById(`received-message-${sentMessages}`).innerHTML += txt.charAt(i);
+      i++;
+      setTimeout(typeWriter, speed);
+    }
+  }
+  typeWriter();
+}
+
+
 function createReceivedMessageSection() {
+  // var demoDiv = document.createElement('div');
   var receivedMessageSection = document.createElement("div");
   receivedMessageSection.classList.add("message", "received");
   receivedMessageSection.innerHTML = `
         <div class="message-dis"><img class="img" src="https://i.ibb.co/znCFVm5/cute-handsome-man-round-avatar-icon-symbol-vector-16831401-removebg-preview.png" alt="Demo Photo" class="profile-photo"/> <p class="message-name">Saifuddin</p></div>
         <div>
-            <span class="message-text">Welcome, Admin!. I am just a Chat Bot. Thank you. </span>
+            <span id="received-message-${sentMessages}" class="message-text"></span>
         </div>`;
+
   return receivedMessageSection;
 }
 function createMessageElement(message, type) {
