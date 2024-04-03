@@ -23,7 +23,6 @@ function sendMessage() {
       }, 1100);
     }, 400);
 
-    // Add "Seen" after 4 seconds delay
     setTimeout(function () {
       var readSection = createReadSection();
       sentMessageElement.appendChild(readSection);
@@ -32,7 +31,6 @@ function sendMessage() {
         var typing = createTypingSection();
         chatMessages.appendChild(typing);
         setTimeout(function () {
-          var i = 0;
           chatMessages.removeChild(typing);
           var receivedMessageSection = createReceivedMessageSection();
           chatMessages.appendChild(receivedMessageSection);
@@ -77,25 +75,36 @@ function createReceivedMessageSection() {
 
   return receivedMessageSection;
 }
+
+// Keep track of the last sender message
+var lastSenderMessage = null;
+
 function createMessageElement(message, type) {
   var messageElement = document.createElement("div");
   messageElement.classList.add("message", type);
+  
+  if (type === "sent") {
+    // If it's a sent message, only show the sender image if it's the last sender message
+    if (lastSenderMessage !== null) {
+      lastSenderMessage.querySelector('.message-box img').style.display = 'none';
+    }
+    lastSenderMessage = messageElement;
+  }
+
   messageElement.innerHTML = `
     <div class="message-div relative self-end">
-    <div>
     <div class="message-box">
     <p class="message-name">Sabbir Hasan</p>
     <img class="img" src="https://i.ibb.co/fDDyFwW/rsz-1sabbir.jpg" alt="image">
     </div>
-    <div>
-    <div class="message-two"><span>${message}</span></div>
-    </div>
+    <div class="message-two">${message}</div>
     </div>
     </div>
     `;
   //messageElement.textContent = message;
   return messageElement;
 }
+
 function createDoneSection() {
   var receivedDoneSection = document.createElement("div");
   receivedDoneSection.classList.add("message", "received");
@@ -105,6 +114,7 @@ function createDoneSection() {
     </div>`;
   return receivedDoneSection;
 }
+
 function creteDeliveredSection() {
   var deliveredSection = document.createElement("div");
   deliveredSection.classList.add("message", "received");
@@ -114,6 +124,7 @@ function creteDeliveredSection() {
         </div>`;
   return deliveredSection;
 }
+
 function createReadSection() {
   var readSection = document.createElement("div");
   readSection.classList.add("message", "received");
@@ -123,6 +134,7 @@ function createReadSection() {
         </div>`;
   return readSection;
 }
+
 function createTypingSection() {
   var typing = document.createElement("div");
   typing.classList.add("message", "received");
