@@ -9,7 +9,7 @@ function sendMessage() {
     var sentMessageElement = createMessageElement(message, "sent");
     chatMessages.appendChild(sentMessageElement);
 
-    // Add a tick mark after 2 seconds delay
+    
     setTimeout(function () {
       var receivedDoneSection = createDoneSection();
       sentMessageElement.appendChild(receivedDoneSection);
