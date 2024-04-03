@@ -92,12 +92,14 @@ function createMessageElement(message, type) {
   }
 
   messageElement.innerHTML = `
-    <div class="message-div relative self-end">
+    <div class="message-div relative self-end flex-col">
     <div class="message-box">
     <p class="message-name">Sabbir Hasan</p>
     <img class="img" src="https://i.ibb.co/fDDyFwW/rsz-1sabbir.jpg" alt="image">
     </div>
+    <div class="max-w-full flex flex-wrap justify-end overflow-hidden">
     <div class="message-two">${message}</div>
+    </div>
     </div>
     </div>
     `;
